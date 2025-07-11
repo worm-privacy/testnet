@@ -1,7 +1,10 @@
-name: Gather requirements
+name: Build everything
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   deploy:
