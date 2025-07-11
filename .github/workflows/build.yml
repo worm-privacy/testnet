@@ -1,0 +1,19 @@
+name: Gather requirements
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    environment: Circuitscan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+
+      - name: Run make
+        run: |
+          make
+          
