@@ -3,6 +3,9 @@
 all:
 	mkdir -p out
 
+	echo "Installing requirements..."
+	sudo apt install -y build-essential cmake libgmp-dev libsodium-dev nasm curl m4 git wget unzip nlohmann-json3-dev
+
 	echo "Downloading proof-of-burn-circuit build files..."
 	mkdir -p proof_of_burn && cd proof_of_burn && wget -q https://circuitscan-artifacts.s3.us-west-2.amazonaws.com/build/proofofburn-unconscious-sapphire-gorilla/pkg.zip
 	echo "Building proof-of-burn-circuit witness generator..."
@@ -19,9 +22,6 @@ all:
 	. ~/.bashrc
 	cd miner && cargo build --release
 	cp miner/target/release/worm-miner out/worm-miner
-
-	echo "Installing requirements..."
-	sudo apt install -y build-essential cmake libgmp-dev libsodium-dev nasm curl m4 git wget unzip nlohmann-json3-dev
 
 	echo "Downloading spend-circuit build files..."
 	mkdir -p spend && cd spend && wget -q https://circuitscan-artifacts.s3.us-west-2.amazonaws.com/build/spend-nice-olive-raven/pkg.zip
