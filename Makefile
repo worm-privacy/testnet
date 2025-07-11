@@ -6,7 +6,7 @@ all:
 	echo "Building WORM miner..."
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 	git clone https://github.com/worm-privacy/miner
-	source ~/.bashrc
+	. ~/.bashrc
 	cd miner && cargo build --release
 	cp miner/target/release/miner out/miner
 
