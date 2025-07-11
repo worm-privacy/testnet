@@ -6,10 +6,11 @@ all:
 	echo "Downloading proof-of-burn-circuit build files..."
 	mkdir -p proof_of_burn && cd proof_of_burn && wget -q https://circuitscan-artifacts.s3.us-west-2.amazonaws.com/build/proofofburn-unconscious-sapphire-gorilla/pkg.zip
 	echo "Building proof-of-burn-circuit witness generator..."
-	cd proof_of_burn && unzip pkg.zip "build/verify_circuit/verify_circuit_cpp/*" -d verify_circuit_cpp && cd verify_circuit_cpp && make
-	cp proof_of_burn/verify_circuit_cpp/verify_circuit out/proof_of_burn
-	cp proof_of_burn/verify_circuit_cpp/verify_circuit.dat out/proof_of_burn.dat
-	cd proof_of_burn && unzip pkg.zip "build/verify_circuit/groth16_vkey.zkey" -d ../out/proof_of_burn.zkey
+	cd proof_of_burn && unzip pkg.zip "build/verify_circuit/verify_circuit_cpp/*" && cd build/verify_circuit/verify_circuit_cpp && make
+	cp proof_of_burn/build/verify_circuit/verify_circuit_cpp/verify_circuit out/proof_of_burn
+	cp proof_of_burn/build/verify_circuit/verify_circuit_cpp/verify_circuit.dat out/proof_of_burn.dat
+	cd proof_of_burn && unzip pkg.zip build/verify_circuit/groth16_vkey.zkey
+	mv proof_of_burn/build/verify_circuit/groth16_vkey.json out/proof_of_burn.zkey
 	rm -rf proof_of_burn/pkg.zip
 
 	echo "Building WORM miner..."
