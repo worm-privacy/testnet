@@ -13,7 +13,7 @@ all:
 	cp proof_of_burn/build/verify_circuit/verify_circuit_cpp/verify_circuit out/proof_of_burn
 	cp proof_of_burn/build/verify_circuit/verify_circuit_cpp/verify_circuit.dat out/proof_of_burn.dat
 	cd proof_of_burn && unzip pkg.zip build/verify_circuit/groth16_vkey.zkey
-	mv proof_of_burn/build/verify_circuit/groth16_vkey.json out/proof_of_burn.zkey
+	mv proof_of_burn/build/verify_circuit/groth16_pkey.zkey out/proof_of_burn.zkey
 	rm -rf proof_of_burn/pkg.zip
 
 	echo "Building WORM miner..."
@@ -29,7 +29,7 @@ all:
 	cd spend && unzip pkg.zip && cd build/verify_circuit/verify_circuit_cpp && make
 	cp spend/build/verify_circuit/verify_circuit_cpp/verify_circuit out/spend
 	cp spend/build/verify_circuit/verify_circuit_cpp/verify_circuit.dat out/spend.dat
-	mv spend/build/verify_circuit/groth16_vkey.json out/spend.zkey
+	mv spend/build/verify_circuit/groth16_pkey.zkey out/spend.zkey
 
 	echo "Building rapidsnark..."
 	git clone --recurse-submodules https://github.com/iden3/rapidsnark
